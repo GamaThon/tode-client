@@ -21,7 +21,7 @@ export class Router {
         if (f) {
             f(o)
         } else {
-            Messages.ErrorAlert("???", "Did not understand " + converesation)
+            Messages.ErrorAlert("???", "Did not understand " + conversation)
             console.log(msg)
         }
     }
