@@ -37,9 +37,6 @@ export class WS {
     }
 
     static Setup(url) {
-
-
-        console.log(url)
         WS.socket = new WebSocket(url);
 
         WS.socket.onopen = function (e) {

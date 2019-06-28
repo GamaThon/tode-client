@@ -28,5 +28,23 @@ export class Messages {
         })
     }
 
+    static InputMessage(title, winHandler) {
+        Swal.fire({
+            title: title,
+            input: 'text',
+            inputAttributes: {
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.value) {
+                winHandler(result.value)
+            }
+        })
+    }
+
 
 }

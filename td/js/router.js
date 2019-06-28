@@ -17,7 +17,7 @@ export class Router {
         let converesation = o.conversation;
         let f = rState.handlers.get(converesation)
         if (f) {
-            f(msg)
+            f(o)
         } else {
             Messages.ErrorAlert("???", "Did not understand " + converesation)
             console.log(msg)
@@ -26,7 +26,12 @@ export class Router {
 
     static handleS_CHANGE_VIEW(x) {
         if (x.view === "NAMING") {
-
+            console.log("asking for name")
+            Messages.InputMessage("Name", (x) => {
+                console.log(x)
+            })
+        } else {
+            console.log("Unknown view: " + x)
         }
     }
 
