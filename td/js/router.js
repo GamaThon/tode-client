@@ -7,13 +7,11 @@ const rState = {
     handlers: new Map()
 }
 
-
 export class Router {
     static setup() {
         //Setup handlers
         rState.handlers.set("S_CHANGE_VIEW", this.handleS_CHANGE_VIEW)
         rState.handlers.set("S_GAMES", this.handleS_GAMES)
-
     }
 
     static handle(msg) {
