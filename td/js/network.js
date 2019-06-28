@@ -31,10 +31,30 @@ export class WS {
     }
 
     static SetupFromScratch() {
-        WS.Setup(WS.getWSUrl(), UserState.getMyKey());
+        WS.Setup(WS.getWSUrl());
     }
 
     static Setup(url) {
+        let timerInterval
+        Swal.fire({
+            title: 'Opening connection',
+            html: 'I will close in <strong></strong> seconds.',
+            timer: 1000,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+        })
+
+
+        console.log(url)
         WS.socket = new WebSocket(url);
 
         WS.socket.onopen = function (e) {

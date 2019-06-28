@@ -1,6 +1,7 @@
 import {Baby} from './baby.js'
 
 export class Setup {
+
     static start() {
         Baby.canvas = document.getElementById("renderCanvas");
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
