@@ -1,3 +1,5 @@
+import {Router} from "./router.js";
+
 export class WS {
 
     static socket = {};
@@ -27,7 +29,7 @@ export class WS {
     }
 
     static handler(x) {
-        Router.Handlers.get(x.conversation)(x)
+        Router.handle(x)
     }
 
     static SetupFromScratch() {
@@ -35,23 +37,6 @@ export class WS {
     }
 
     static Setup(url) {
-        let timerInterval
-        Swal.fire({
-            title: 'Opening connection',
-            html: 'I will close in <strong></strong> seconds.',
-            timer: 1000,
-            onBeforeOpen: () => {
-                Swal.showLoading()
-                timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = Swal.getTimerLeft()
-                }, 100)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-        })
 
 
         console.log(url)
