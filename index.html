@@ -23,6 +23,8 @@
     <script src="td/js/libs/babylon.gui.min.js"></script>
     <script src="td/js/libs/sweetalert2.js"></script>
 
+    <link rel="stylesheet" href="td/js/libs/bootstrap.min.css">
+
 
     <style>
         html, body {
@@ -57,9 +59,52 @@
 </head>
 <body>
 <canvas id="renderCanvas"></canvas>
+
+<div id="MATCHING">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+
+            </div>
+            <div style="margin-top: 100px;" class="col-4">
+
+                <center>
+                    <btn class="btn btn-lg btn-success" onclick="newGame()">New</btn>
+                </center>
+                <br/>
+
+                <table id="table" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Join</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Active</th>
+                        <td>Column content</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="x"></div>
+
 </body>
 
 <script type="module">
+    import {ViewManager} from "./td/js/view.js";
+
+    ViewManager.ChangeView("x")
+
     import {Setup} from './td/js/setup.js'
 
     Setup();
@@ -77,6 +122,10 @@
             Messages.ErrorAlert("Websocket connection", "Failed to connect. Refresh the page.")
         }
 
+    }
+
+    function newGame() {
+        //
     }
 
 

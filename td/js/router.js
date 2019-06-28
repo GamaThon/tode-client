@@ -1,5 +1,6 @@
 import {Messages} from "./msg.js";
 import {WS} from './network.js';
+import {ViewManager} from "./view.js";
 
 const rState = {
     handlers: new Map()
@@ -34,6 +35,8 @@ export class Router {
                     name: x
                 }))
             })
+        } else if (x.view === "MATCHING") {
+            ViewManager.ChangeView("MATCHING")
         } else {
             console.log("Unknown view: " + x)
         }
