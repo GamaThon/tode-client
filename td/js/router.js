@@ -1,6 +1,7 @@
 import {Messages} from "./msg.js";
 import {WS} from './network.js';
 import {ViewManager} from "./view.js";
+import {Setup} from "./babylon-setup.js";
 
 const rState = {
     handlers: new Map()
@@ -37,7 +38,9 @@ export class Router {
                 }))
             })
         } else if (x.view === "MATCHING") {
-            ViewManager.ChangeView("MATCHING")
+            // ViewManager.ChangeView("MATCHING")
+            ViewManager.ChangeView("renderCanvas")
+            Setup.start()
         } else {
             console.log("Unknown view: " + x)
         }

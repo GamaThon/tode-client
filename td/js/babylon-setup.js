@@ -15,7 +15,7 @@ export class Setup {
         const skybox = BABYLON.Mesh.CreateBox("skyBox", 1000.0, Baby.scene);
         const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", Baby.scene);
         skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/TropicalSunnyDay", Baby.scene);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("td/textures/TropicalSunnyDay", Baby.scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
         skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -23,7 +23,7 @@ export class Setup {
         skybox.material = skyboxMaterial;
 
         // Ground
-        const groundTexture = new BABYLON.Texture("textures/sand.jpg", Baby.scene);
+        const groundTexture = new BABYLON.Texture("td/textures/sand.jpg", Baby.scene);
         groundTexture.vScale = groundTexture.uScale = 4.0;
 
         const groundMaterial = new BABYLON.StandardMaterial("groundMaterial", Baby.scene);
@@ -37,7 +37,7 @@ export class Setup {
         const waterMesh = BABYLON.Mesh.CreateGround("waterMesh", 512, 512, 32, Baby.scene, false);
         const water = new BABYLON.WaterMaterial("water", Baby.scene, new BABYLON.Vector2(1024, 1024));
         water.backFaceCulling = true;
-        water.bumpTexture = new BABYLON.Texture("textures/waterbump.png", Baby.scene);
+        water.bumpTexture = new BABYLON.Texture("td/textures/waterbump.png", Baby.scene);
         water.windForce = -5;
         water.waveHeight = 0.5;
         water.bumpHeight = 0.1;
