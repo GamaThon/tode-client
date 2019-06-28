@@ -58,5 +58,16 @@ export class Setup {
         window.addEventListener("resize", function () {
             Baby.engine.resize();
         });
+
+        Setup.createBaseTile()
+
+
     }
+
+    static createBaseTile() {
+        Baby.baseTile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 1, depth: 1}, Baby.scene);
+        Baby.baseTile.position.Y += 10
+
+    }
+
 }
