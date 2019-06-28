@@ -1,4 +1,5 @@
 import {Messages} from "./msg.js";
+import {WS} from './network.js';
 
 const rState = {
     handlers: new Map()
@@ -14,8 +15,8 @@ export class Router {
 
     static handle(msg) {
         let o = JSON.parse(msg)
-        let converesation = o.conversation;
-        let f = rState.handlers.get(converesation)
+        let conversation = o.conversation;
+        let f = rState.handlers.get(conversation)
         if (f) {
             f(o)
         } else {
@@ -28,7 +29,10 @@ export class Router {
         if (x.view === "NAMING") {
             console.log("asking for name")
             Messages.InputMessage("Name", (x) => {
-                console.log(x)
+                WS.send(JSON.stringify({
+                    conversation: "P_NAME",
+                    name: x
+                }))
             })
         } else {
             console.log("Unknown view: " + x)
