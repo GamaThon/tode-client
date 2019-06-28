@@ -29,7 +29,7 @@ export class Setup {
         const groundMaterial = new BABYLON.StandardMaterial("groundMaterial", Baby.scene);
         groundMaterial.diffuseTexture = groundTexture;
 
-        const ground = BABYLON.Mesh.CreateGround("ground", 512, 512, 32, Baby.scene, false);
+        const ground = BABYLON.Mesh.CreateGround("ground", 512, 512, 20, Baby.scene, false);
         ground.position.y = -1;
         ground.material = groundMaterial;
 
@@ -65,8 +65,14 @@ export class Setup {
     }
 
     static createBaseTile() {
-        Baby.baseTile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 1, depth: 1}, Baby.scene);
-        Baby.baseTile.position.Y += 10
+        Baby.baseTile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 10, depth: 10}, Baby.scene);
+        Baby.baseTile.position.y += 3
+
+        const myMaterial = new BABYLON.StandardMaterial("myMaterial", Baby.scene);
+        myMaterial.diffuseTexture = new BABYLON.Texture("td/textures/tile1.jpg", Baby.scene);
+        Baby.baseTile.material = myMaterial;
+
+
 
     }
 
