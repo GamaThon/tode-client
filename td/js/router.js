@@ -44,12 +44,15 @@ export class Router {
     }
 
     static handleS_GAMES(x) {
+
+        document.getElementById("newGameId").onlick = function x() {
+            Setup.start()
+        }
+
         let t = document.getElementById("table")
         for (const i of x.games) {
-
-
+            t.innerHTML += `<tr><td>1</td><td>2</td></tr>`
         }
-        t.innerHTML += `<tr><td>1</td>2<td></td></tr>`
 
 
     }
