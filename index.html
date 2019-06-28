@@ -60,11 +60,12 @@
 </body>
 
 <script type="module">
-    // import {Setup} from './js/babylon-setup.js'
-    // Setup.start()
+    import {Setup} from './td/js/setup.js'
+
+    Setup();
 
     import {WS} from './td/js/network.js'
-    import {ViewManager} from './td/js/view.js'
+    import {Messages} from "./td/js/msg.js";
 
 
     WS.SetupFromScratch()
@@ -73,10 +74,9 @@
 
     function check() {
         if (!WS.connected) {
-            alert("Cant connect.")
+            Messages.ErrorAlert("Websocket connection", "Failed to connect. Refresh the page.")
             return
         }
-        ViewManager.ChangeView("NAMING")
     }
 
 
