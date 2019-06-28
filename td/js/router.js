@@ -11,6 +11,7 @@ export class Router {
     static setup() {
         //Setup handlers
         rState.handlers.set("S_CHANGE_VIEW", this.handleS_CHANGE_VIEW)
+        rState.handlers.set("S_GAMES", this.handleS_GAMES)
 
     }
 
@@ -40,6 +41,17 @@ export class Router {
         } else {
             console.log("Unknown view: " + x)
         }
+    }
+
+    static handleS_GAMES(x) {
+        let t = document.getElementById("table")
+        for (const i of x.games) {
+
+
+        }
+        t.innerHTML += `<tr><td>1</td>2<td></td></tr>`
+
+
     }
 
 }

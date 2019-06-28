@@ -1,9 +1,16 @@
 import {Router} from "./router.js";
 
+const state = {
+    socket: {},
+    connected: false,
+
+}
+
 export class WS {
 
-    static socket = {};
-    static connected = false;
+    static connected() {
+        return state.connected
+    }
 
     static getWSUrl() {
         let url = '';
@@ -12,14 +19,14 @@ export class WS {
         } else {
             url = 'ws://';
         }
-        url += window.location.host + '/websocket';
+        url += window.location.hostname + ":8001" + '/websocket';
         return url;
     }
 
 
     static send(msg) {
         try {
-            WS.socket.send(msg);
+            state.socket.send(msg);
         } catch (e) {
             this.SetupFromScratch();
             setTimeout(() => {
@@ -37,18 +44,18 @@ export class WS {
     }
 
     static Setup(url) {
-        WS.socket = new WebSocket(url);
+        state.socket = new WebSocket(url);
 
-        WS.socket.onopen = function (e) {
-            WS.connected = true;
+        state.socket.onopen = function (e) {
+            state.connected = true;
         };
 
-        WS.socket.onmessage = function (event) {
+        state.socket.onmessage = function (event) {
             WS.handler(event.data);
         };
 
-        WS.socket.onclose = function (event) {
-            WS.connected = false;
+        state.socket.onclose = function (event) {
+            state.connected = false;
             if (event.wasClean) {
                 console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
             } else {
@@ -56,7 +63,7 @@ export class WS {
             }
         };
 
-        WS.socket.onerror = function (error) {
+        state.socket.onerror = function (error) {
             console.log(`[error] ${error.message}`);
         };
     }

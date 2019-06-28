@@ -73,14 +73,14 @@
                 </center>
                 <br/>
 
-                <table id="table" class="table table-hover">
+                <table class="table table-hover">
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Join</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="table">
                     <tr>
                         <th scope="row">Active</th>
                         <td>Column content</td>
@@ -118,7 +118,7 @@
     setTimeout(check, 1000);
 
     function check() {
-        if (!WS.connected) {
+        if (!WS.connected()) {
             Messages.ErrorAlert("Websocket connection", "Failed to connect. Refresh the page.")
         }
 
