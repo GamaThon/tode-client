@@ -130,24 +130,21 @@ export class Setup {
     }
 
     static createPath1() {
-        let _array = MapManager.getMap().puzzleMaze;
-        let _vec2;
-
-        for(i = 0; i < 15; i++)
-            _vec2[i] = i,0,7;
-        let pathLane1 = new BABYLON.Path3D(0,_vec2,false);
-        return pathLane1;
+        let p = []
+        p.push(new BABYLON.Vector3(20, 8, 160))
+        p.push(new BABYLON.Vector3(300, 8, 160))
+        return p;
     }
 
     static createPath2() {
 
         let _vec3 = [];
 
-        _vec3.push(new BABYLON.Vector3(1*20,0,7*20));
-        _vec3.push(new BABYLON.Vector3(3*20,0,4*20));
-        _vec3.push(new BABYLON.Vector3(7*20,0,7*20));
-        _vec3.push(new BABYLON.Vector3(12*20,0,10*20));
-        _vec3.push(new BABYLON.Vector3(14*20,0,7*20));
+        _vec3.push(new BABYLON.Vector3(1*20,8,7*20));
+        _vec3.push(new BABYLON.Vector3(3*20,8,4*20));
+        _vec3.push(new BABYLON.Vector3(7*20,8,7*20));
+        _vec3.push(new BABYLON.Vector3(12*20,8,10*20));
+        _vec3.push(new BABYLON.Vector3(14*20,8,7*20));
 
         return _vec3;
     }
@@ -163,8 +160,8 @@ export class Setup {
         Baby.sphereMesh.material = Baby.sphereMaterial
 
         Baby.sphereMesh.position.x = 20
-        Baby.sphereMesh.position.z = 20 * 8
         Baby.sphereMesh.position.y = 8
+        Baby.sphereMesh.position.z = 20 * 8
 
 
         Baby.sphereMesh.visibility = false
@@ -172,12 +169,27 @@ export class Setup {
     }
 
     static createTwoCreeps() {
-        let c1 = Baby.sphereMesh.clone("c1")
-        c1.visibility = true
+        Baby.c1 = Baby.sphereMesh.clone("c1")
+        Baby.c1.visibility = true
 
-        let c2 = Baby.sphereMesh.clone("c1")
-        c2.position.x = 15 * 20
-        c2.visibility = true
+        Baby.c2 = Baby.sphereMesh.clone("c1")
+        Baby.c2.position.x = 15 * 20
+        Baby.c2.visibility = true
+
+        const track = BABYLON.MeshBuilder.CreateLines('track', {points: this.createPath1()}, Baby.scene);
+        track.color = new BABYLON.Color3(0, 0, 0);
+
+
+        const trackP2 = BABYLON.MeshBuilder.CreateLines('track2', {points: this.createPath2()}, Baby.scene);
+        trackP2.color = new BABYLON.Color3(0, 0, 0);
+
+
+        //Move it
+        setInterval(() => {
+            Baby.c1.position.x += 0.5
+        }, 30)
+
+
 
 
     }
