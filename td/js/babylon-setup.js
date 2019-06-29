@@ -84,6 +84,12 @@ export class Setup {
         Setup.createAnotherTree("6", 240, -4, 78)
         Setup.createAnotherTree("7", 240, -4, 62.5)
 
+        const track = BABYLON.MeshBuilder.CreateLines('track', {points: this.createPath1()}, Baby.scene);
+        track.color = new BABYLON.Color3(0, 0, 0);
+
+
+        const trackP2 = BABYLON.MeshBuilder.CreateLines('track2', {points: this.createPath2()}, Baby.scene);
+        trackP2.color = new BABYLON.Color3(0, 0, 0);
 
 
     }
@@ -209,18 +215,27 @@ export class Setup {
         Baby.c2.position.x = 15 * 20
         Baby.c2.visibility = true
 
-        const track = BABYLON.MeshBuilder.CreateLines('track', {points: this.createPath1()}, Baby.scene);
-        track.color = new BABYLON.Color3(0, 0, 0);
-
-
-        const trackP2 = BABYLON.MeshBuilder.CreateLines('track2', {points: this.createPath2()}, Baby.scene);
-        trackP2.color = new BABYLON.Color3(0, 0, 0);
 
 
         //Move it
-        setInterval(() => {
+        let i = setInterval(() => {
             Baby.c1.position.x += 0.5
+            if (Baby.c1.position.x > 300) {
+                clearInterval(i)
+                Baby.c1.dispose()
+            }
+
         }, 30)
+
+        let i2 = setInterval(() => {
+            Baby.c2.position.x -= 0.5
+            if (Baby.c2.position.x < 20) {
+                clearInterval(i2)
+                Baby.c2.dispose()
+            }
+
+        }, 30)
+
 
 
     }
