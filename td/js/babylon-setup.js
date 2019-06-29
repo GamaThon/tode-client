@@ -65,7 +65,7 @@ export class Setup {
     }
 
     static createBaseTile() {
-        Baby.baseTile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 10, depth: 10}, Baby.scene);
+        Baby.baseTile = BABYLON.MeshBuilder.CreateBox("box", {height: 0.1, width: 20, depth: 20}, Baby.scene);
         Baby.baseTile.position.y += 3
 
         const myMaterial = new BABYLON.StandardMaterial("myMaterial", Baby.scene);
@@ -73,7 +73,7 @@ export class Setup {
         Baby.baseTile.material = myMaterial;
 
 
-
     }
+
 
 }
