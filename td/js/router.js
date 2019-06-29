@@ -2,6 +2,7 @@ import {Messages} from "./msg.js";
 import {WS} from './network.js';
 import {ViewManager} from "./view.js";
 import {Setup} from "./babylon-setup.js";
+import {Baby} from "./baby.js";
 
 const rState = {
     handlers: new Map()
@@ -13,6 +14,7 @@ export class Router {
         rState.handlers.set("S_CHANGE_VIEW", this.handleS_CHANGE_VIEW)
         rState.handlers.set("S_GAMES", this.handleS_GAMES)
         rState.handlers.set("S_PLAYER_NUMBER", this.handleS_PLAYER_NUMBER)
+        rState.handlers.set("S_PLAYER_CREEP", this.handleS_PLAYER_CREEP)
     }
 
     static handle(msg) {
@@ -60,6 +62,31 @@ export class Router {
     }
 
     static handleS_PLAYER_NUMBER(x) {
+        console.log(x)
+        setTimeout(() => {
+            if (x.playerNumber === 0) {
+                Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, 2 * Math.PI / 6, 250, new BABYLON.Vector3(160, -40, 160), Baby.scene);
+            } else if (x.playerNumber === 1) {
+                Baby.camera = new BABYLON.ArcRotateCamera("Camera", 0, 2 * Math.PI / 6, 250, new BABYLON.Vector3(150, -40, 150), Baby.scene);
+            }
+            Baby.camera.attachControl(Baby.canvas, true);
+
+            Baby.engine.runRenderLoop(function () {
+                if (Baby.scene) {
+                    Baby.scene.render();
+                }
+            });
+
+            // Resize
+            window.addEventListener("resize", function () {
+                Baby.engine.resize();
+            });
+
+
+        }, 1000)
+    }
+
+    static handleS_PLAYER_CREEP(x) {
         console.log(x)
     }
 

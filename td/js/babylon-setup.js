@@ -77,10 +77,10 @@ export class Setup {
         //Person 1
         // Radians explained: https://en.wikipedia.org/wiki/Unit_circle#/media/File:Unit_circle_angles_color.svg
         // Vector: x, lower/raise camera, z --> Used for point of rotation for camera
-        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, 2 * Math.PI / 6, 250, new BABYLON.Vector3(160, -40, 160), Baby.scene);
+        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, 2 * Math.PI / 6, 250, new BABYLON.Vector3(160, -40, 160), Baby.scene);
         //Person 2
         // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 0, 2 * Math.PI / 6, 250, new BABYLON.Vector3(150, -40, 150), Baby.scene);
-        Baby.camera.attachControl(Baby.canvas, true);
+        // Baby.camera.attachControl(Baby.canvas, true);
 
 
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), Baby.scene);
@@ -126,16 +126,6 @@ export class Setup {
         waterMesh.position.z += 192
 
 
-        Baby.engine.runRenderLoop(function () {
-            if (Baby.scene) {
-                Baby.scene.render();
-            }
-        });
-
-        // Resize
-        window.addEventListener("resize", function () {
-            Baby.engine.resize();
-        });
 
         Setup.createBaseTile()
         Setup.createMap()
