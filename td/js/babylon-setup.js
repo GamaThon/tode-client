@@ -32,7 +32,7 @@ export class Setup {
                 texture = task.texture;
                 updateTexture();
             }
-
+//Getridofeventually
             textureTask.onError = function (task, message, exception) {
                 console.log("TextTaskError"+message, exception);
             }
@@ -40,21 +40,26 @@ export class Setup {
             meshTask.onError = function (task, message, exception) {
                 console.log("BUGMEUP"+message, exception);
             }
+//
+
+            let matera1 = new BABYLON.StandardMaterial("Mat", Baby.scene);
+            matera1.ambientTexture = new BABYLON.Texture("td/textures/tower1.jpg", Baby.scene);
 
             
             function updateTexture() {
                 
                 try{
-                    if (mesh && texture) {
+                    if (meshes && texture) {
                     
     
                     const scl = 0.06
-                    const scalingFactor = new BABYLON.Vector3(scl, scl, scl)
+                    const scalingFactor = new BABYLON.Vector3(scl, 0.04, scl)
                     
-                    mesh.scaling = scalingFactor
                     for(const m of meshes) {
                         m.scaling = scalingFactor;
-                    //m.material.diffuseTexture = texture;        
+                        m.material = matera1;
+                        m.material.emissiveColor = BABYLON.Color3.Red();
+                        m.material.diffuseColor = BABYLON.Color3.Yellow();        
                     }
                     console.log("11:  " + scl + mesh.scaling)    
                 }
