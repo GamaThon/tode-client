@@ -12,6 +12,7 @@ export class Router {
         //Setup handlers
         rState.handlers.set("S_CHANGE_VIEW", this.handleS_CHANGE_VIEW)
         rState.handlers.set("S_GAMES", this.handleS_GAMES)
+        rState.handlers.set("S_PLAYER_NUMBER", this.handleS_PLAYER_NUMBER)
     }
 
     static handle(msg) {
@@ -56,6 +57,10 @@ export class Router {
         }
 
 
+    }
+
+    static handleS_PLAYER_NUMBER(x) {
+        console.log(x)
     }
 
 }
