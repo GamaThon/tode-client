@@ -101,6 +101,9 @@ export class Setup {
         Baby.baseTile.material = myMaterial;
         Baby.baseTile.visibility = false
 
+
+        Baby.darkMaterial = new BABYLON.StandardMaterial("darkMaterial", Baby.scene);
+        Baby.diffuseTexture = new BABYLON.Texture("td/textures/dark_tile.jpg", Baby.scene);
     }
 
     static createMap() {
@@ -118,6 +121,11 @@ export class Setup {
                 let newTile = Baby.baseTile.clone("newTile" + pX + "." + pZ)
                 newTile.position.x = pX * 20;
                 newTile.position.z = pZ * 20;
+
+                if (row === 2) {
+                    newTile.material = Baby.darkMaterial
+                }
+
                 newTile.visibility = true
             }
             pX = 0
