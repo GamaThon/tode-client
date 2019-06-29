@@ -30,7 +30,6 @@ export class Setup {
         // Baby.camera.attachControl(Baby.canvas, true);
 
 
-
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), Baby.scene);
 
         // Skybox
@@ -74,7 +73,6 @@ export class Setup {
         waterMesh.position.z += 192
 
 
-
         Baby.engine.runRenderLoop(function () {
             if (Baby.scene) {
                 Baby.scene.render();
@@ -88,6 +86,8 @@ export class Setup {
 
         Setup.createBaseTile()
         Setup.createMap()
+        Setup.createBaseCreep()
+        Setup.createTwoCreeps()
 
 
     }
@@ -142,4 +142,32 @@ export class Setup {
     }
 
 
+    static createBaseCreep() {
+
+        Baby.sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", Baby.scene);
+        Baby.sphereMaterial.diffuseTexture = new BABYLON.Texture("//www.babylonjs.com/assets/wood.jpg", Baby.scene);
+
+        Baby.sphereMesh = BABYLON.Mesh.CreateSphere("sphere", 20, 10, Baby.scene)
+        Baby.sphereMesh.position.y = 7
+        Baby.sphereMesh.material = Baby.sphereMaterial
+
+        Baby.sphereMesh.position.x = 20
+        Baby.sphereMesh.position.z = 20 * 8
+        Baby.sphereMesh.position.y = 8
+
+
+        Baby.sphereMesh.visibility = false
+
+    }
+
+    static createTwoCreeps() {
+        let c1 = Baby.sphereMesh.clone("c1")
+        c1.visibility = true
+
+        let c2 = Baby.sphereMesh.clone("c1")
+        c2.position.x = 15 * 20
+        c2.visibility = true
+
+
+    }
 }
