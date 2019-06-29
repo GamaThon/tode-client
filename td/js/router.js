@@ -90,7 +90,7 @@ export class Router {
     }
 
     static handleS_PLAYER_CREEP(x) {
-
+        Setup.createCreep(x.id, x.playerNumber)
     }
 
 }
