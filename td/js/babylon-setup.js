@@ -7,17 +7,27 @@ export class Setup {
         Baby.canvas = document.getElementById("renderCanvas");
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
-        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 4, 100, BABYLON.Vector3.Zero(), Baby.scene);
+        //Person 1
+        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(256, 10, 256), Baby.scene);
+        Baby.camera.setPosition(new BABYLON.Vector3(Math.PI, Math.PI / 4, 100));
+        //Person 2
+        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 2 * Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(100, 10, 256), Baby.scene);
+        Baby.camera.attachControl(Baby.canvas, true);
+
+        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), Baby.scene);
+        // Baby.camera.setPosition(new BABYLON.Vector3(0, 0, 20));
         // Baby.camera.attachControl(Baby.canvas, true);
+
 
         //Fly
         // Baby.camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(0, 5, -10), Baby.scene);
         // Baby.camera.attachControl(Baby.canvas, true);
 
 
-        Baby.camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), Baby.scene);
-        Baby.camera.setTarget(BABYLON.Vector3.Zero());
-        Baby.camera.attachControl(Baby.canvas, true);
+        //Maybe
+        // Baby.camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, 20), Baby.scene);
+        // Baby.camera.setTarget(BABYLON.Vector3.Zero());
+        // Baby.camera.attachControl(Baby.canvas, true);
 
 
 
