@@ -8,6 +8,7 @@ export class Setup {
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
         //Person 1
+        // Radians explained: https://en.wikipedia.org/wiki/Unit_circle#/media/File:Unit_circle_angles_color.svg
         // Vector: x, lower/raise camera, z --> Used for point of rotation for camera
         Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, 2 * Math.PI / 6, 250, new BABYLON.Vector3(160, -40, 160), Baby.scene);
         //Person 2
