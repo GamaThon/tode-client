@@ -7,6 +7,68 @@ export class Setup {
         Baby.canvas = document.getElementById("renderCanvas");
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
+
+        
+        //Model creation
+        let assetsManager = new BABYLON.AssetsManager(Baby.scene);
+        let meshTask = assetsManager.addMeshTask("meshtask1", "", "td/models/", "tower.babylon");
+        
+        let mesh;
+        let texture;
+        let meshes;
+        
+        meshTask.onSuccess = function (task) {
+                mesh = task.loadedMeshes[0];
+                meshes = task.loadedMeshes;
+                console.log("MESHLOADEDTASKBUG: " +task.loadedMeshes.length)
+                mesh.material = new BABYLON.StandardMaterial("tower1material", Baby.scene)
+                updateTexture();
+            }	
+
+            let textureTask = assetsManager.addTextureTask("textureTask", "td/textures/tower1.jpg")
+
+        textureTask.onSuccess = function (task) {
+                console.log("Success")
+                texture = task.texture;
+                updateTexture();
+            }
+
+            textureTask.onError = function (task, message, exception) {
+                console.log("TextTaskError"+message, exception);
+            }
+
+            meshTask.onError = function (task, message, exception) {
+                console.log("BUGMEUP"+message, exception);
+            }
+
+            
+            function updateTexture() {
+                
+                try{
+                    if (mesh && texture) {
+                    
+    
+                    const scl = 0.06
+                    const scalingFactor = new BABYLON.Vector3(scl, scl, scl)
+                    
+                    mesh.scaling = scalingFactor
+                    for(const m of meshes) {
+                        m.scaling = scalingFactor;
+                    //m.material.diffuseTexture = texture;        
+                    }
+                    console.log("11:  " + scl + mesh.scaling)    
+                }
+                }
+                catch (err) {
+                    console.log("error updateText: "+err.message);
+                }
+            
+                
+            }
+            
+            assetsManager.load();
+        //End Model creation
+
         //Person 1
         // Radians explained: https://en.wikipedia.org/wiki/Unit_circle#/media/File:Unit_circle_angles_color.svg
         // Vector: x, lower/raise camera, z --> Used for point of rotation for camera
@@ -207,4 +269,6 @@ export class Setup {
 
 
     }
+
+
 }
