@@ -7,8 +7,19 @@ export class Setup {
         Baby.canvas = document.getElementById("renderCanvas");
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
-        Baby.camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 4, 100, BABYLON.Vector3.Zero(), Baby.scene);
+        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 4, 100, BABYLON.Vector3.Zero(), Baby.scene);
+        // Baby.camera.attachControl(Baby.canvas, true);
+
+        //Fly
+        // Baby.camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(0, 5, -10), Baby.scene);
+        // Baby.camera.attachControl(Baby.canvas, true);
+
+
+        Baby.camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), Baby.scene);
+        Baby.camera.setTarget(BABYLON.Vector3.Zero());
         Baby.camera.attachControl(Baby.canvas, true);
+
+
 
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), Baby.scene);
 
