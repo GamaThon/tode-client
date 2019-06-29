@@ -103,7 +103,7 @@ export class Setup {
 
 
         Baby.darkMaterial = new BABYLON.StandardMaterial("darkMaterial", Baby.scene);
-        Baby.diffuseTexture = new BABYLON.Texture("td/textures/dark_tile.jpg", Baby.scene);
+        Baby.darkMaterial.diffuseTexture = new BABYLON.Texture("td/textures/dark_tile.jpg", Baby.scene);
     }
 
     static createMap() {
