@@ -104,10 +104,7 @@ export class Setup {
 
         Baby.darkMaterial = new BABYLON.StandardMaterial("darkMaterial", Baby.scene);
         Baby.darkMaterial.diffuseTexture = new BABYLON.Texture("td/textures/dark_tile.jpg", Baby.scene);
-
-        Baby.grassMaterial = new BABYLON.StandardMaterial("grassMaterial", Baby.scene);
-        Baby.grassMaterial.diffuseTexture = new BABYLON.Texture("td/textures/grass_tile.jpg", Baby.scene);
-    }
+        }
 
     static createMap() {
         let pX = 0;
@@ -124,13 +121,9 @@ export class Setup {
                 let newTile = Baby.baseTile.clone("newTile" + pX + "." + pZ)
                 newTile.position.x = pX * 20;
                 newTile.position.z = pZ * 20;
-
+                
                 if (row === 2) {
                     newTile.material = Baby.darkMaterial
-                }
-
-                if (row === 3) {
-                    newTile.material = Baby.grassMaterial
                 }
 
                 newTile.visibility = true
@@ -139,6 +132,31 @@ export class Setup {
         }
 
 
+
+    }
+
+    static createPath1() {
+        let _array = MapManager.getMap().puzzleMaze;
+        let _vec2;
+        
+        for(i = 0; i < 15; i++)
+            _vec2[i] = i,0,7;
+        let pathLane1 = new BABYLON.Path3D(0,_vec2,false);
+        return pathLane1;
+    }
+
+    static createPath2() {
+
+        let _vec3;
+
+        _vec3[0] = 0,0,7;
+        _vec3[1] = 2,0,4;
+        _vec3[2] = 7,0,7;
+        _vec3[3] = 12,0,10;
+        _vec3[4] = 14,0,7;
+        
+        let pathLane1 = new BABYLON.Path3D(0,_vec3,false);
+        return pathLane1;
     }
 
 
