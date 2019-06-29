@@ -16,7 +16,6 @@ export class Setup {
         Baby.camera.attachControl(Baby.canvas, true);
 
 
-
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), Baby.scene);
 
         // Skybox
@@ -126,7 +125,6 @@ export class Setup {
         }
 
 
-
     }
 
     static createPath1() {
@@ -138,15 +136,15 @@ export class Setup {
 
     static createPath2() {
 
-        let _vec3 = [];
+        let p = [];
+        p.push(this.getVector3(1, 8, 8))
 
-        _vec3.push(new BABYLON.Vector3(1*20,8,7*20));
-        _vec3.push(new BABYLON.Vector3(3*20,8,4*20));
-        _vec3.push(new BABYLON.Vector3(7*20,8,7*20));
-        _vec3.push(new BABYLON.Vector3(12*20,8,10*20));
-        _vec3.push(new BABYLON.Vector3(14*20,8,7*20));
 
-        return _vec3;
+        return p;
+    }
+
+    static getVector3(x, y, z) {
+        return new BABYLON.Vector3(x * 20, 8, z * 20)
     }
 
 
@@ -188,8 +186,6 @@ export class Setup {
         setInterval(() => {
             Baby.c1.position.x += 0.5
         }, 30)
-
-
 
 
     }
