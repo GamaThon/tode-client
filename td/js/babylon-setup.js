@@ -74,7 +74,10 @@ export class Setup {
         Setup.createMap()
         Setup.createBaseCreep()
         Setup.createTwoCreeps()
-        Setup.createBaseTree()
+        Setup.createBaseTree(3 * 20, 0, 12 * 20)
+        //More trees
+        Setup.createAnotherTree("1", 4 * 20, -10, 13 * 20)
+
 
 
     }
@@ -209,7 +212,16 @@ export class Setup {
 
     }
 
-    static createBaseTree() {
+    static createAnotherTree(id, x, y, z) {
+        let tree = Baby.tree.clone("tree" + id)
+        tree.position.x = x
+        tree.position.y = y
+        tree.position.z = z
+
+    }
+
+
+    static createBaseTree(x, y, z) {
 
     //leaf material
     	let green = new BABYLON.StandardMaterial("green", Baby.scene);
@@ -242,7 +254,12 @@ export class Setup {
     	let tree = createTree(trunk_height, trunk_taper, trunk_slices, bark, boughs, forks, fork_angle, fork_ratio, branches, branch_angle, bow_freq, bow_height, leaves_on_branch, leaf_wh_ratio, green, Baby.scene);
         tree.position.y = -10;
 
-        tree.visibility = false
+        // tree.visibility = false
+        tree.position.x = x
+        tree.position.y = y
+        tree.position.z = z
+
+        Baby.tree = tree
 
 
     }
