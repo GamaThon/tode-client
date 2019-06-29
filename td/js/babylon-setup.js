@@ -104,6 +104,9 @@ export class Setup {
 
         Baby.darkMaterial = new BABYLON.StandardMaterial("darkMaterial", Baby.scene);
         Baby.darkMaterial.diffuseTexture = new BABYLON.Texture("td/textures/dark_tile.jpg", Baby.scene);
+
+        Baby.grassMaterial = new BABYLON.StandardMaterial("grassMaterial", Baby.scene);
+        Baby.grassMaterial.diffuseTexture = new BABYLON.Texture("td/textures/grass_tile.jpg", Baby.scene);
     }
 
     static createMap() {
@@ -124,6 +127,10 @@ export class Setup {
 
                 if (row === 2) {
                     newTile.material = Baby.darkMaterial
+                }
+
+                if (row === 3) {
+                    newTile.material = Baby.grassMaterial
                 }
 
                 newTile.visibility = true
