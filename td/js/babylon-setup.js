@@ -138,8 +138,19 @@ export class Setup {
 
         let p = [];
         p.push(this.getVector3(1, 8, 8))
-
-
+        p.push(this.getVector3(1, 8, 6))
+        p.push(this.getVector3(3, 8, 6))
+        p.push(this.getVector3(3, 8, 3))
+        p.push(this.getVector3(7, 8, 3))
+        p.push(this.getVector3(7, 8, 4))
+        p.push(this.getVector3(8, 8, 4))
+        p.push(this.getVector3(8, 8, 12))
+        p.push(this.getVector3(9, 8, 12))
+        p.push(this.getVector3(9, 8, 13))
+        p.push(this.getVector3(13, 8, 13))
+        p.push(this.getVector3(13, 8, 10))
+        p.push(this.getVector3(15, 8, 10))
+        p.push(this.getVector3(15, 8, 8))
         return p;
     }
 
