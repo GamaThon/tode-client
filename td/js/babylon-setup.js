@@ -74,9 +74,15 @@ export class Setup {
         Setup.createMap()
         Setup.createBaseCreep()
         Setup.createTwoCreeps()
-        Setup.createBaseTree(3 * 20, 0, 12 * 20)
+        Setup.createBaseTree(3 * 20, -4, 12 * 20)
         //More trees
-        Setup.createAnotherTree("1", 4 * 20, -10, 13 * 20)
+        Setup.createAnotherTree("1", 4 * 20, -4, 13 * 20)
+        Setup.createAnotherTree("2", 3 * 20, -4, 13 * 20)
+        Setup.createAnotherTree("3", 4 * 20, -4, 12 * 20)
+        Setup.createAnotherTree("4", 255, -4, 62.5)
+        Setup.createAnotherTree("5", 255, -4, 78)
+        Setup.createAnotherTree("6", 240, -4, 78)
+        Setup.createAnotherTree("7", 240, -4, 62.5)
 
 
 
@@ -100,6 +106,9 @@ export class Setup {
 
         Baby.treeMaterial = new BABYLON.StandardMaterial("treeMaterial", Baby.scene);
         Baby.treeMaterial.diffuseTexture = new BABYLON.Texture("td/textures/tree_tile.jpg", Baby.scene);
+
+        Baby.waterMaterial = new BABYLON.StandardMaterial("waterMaterial", Baby.scene);
+        Baby.waterMaterial.diffuseTexture = new BABYLON.Texture("td/textures/water_tile.jpg", Baby.scene);
     }
 
     static createMap() {
@@ -128,6 +137,10 @@ export class Setup {
 
                 if (row === 4) {
                     newTile.material = Baby.treeMaterial
+                }
+
+                if (row === 5) {
+                    newTile.material = Baby.waterMaterial
                 }
 
                 newTile.visibility = true
