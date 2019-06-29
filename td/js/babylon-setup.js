@@ -243,7 +243,7 @@ export class Setup {
 
     }
 
-    static createCreep(id, playerNum) {
+    static createCreep(id, playerNumber) {
 
         let c1 = Baby.sphereMesh.clone("c1" + id)
         c1.visibility = true
@@ -254,7 +254,7 @@ export class Setup {
         }
 
 
-        if (playerNum == 1) {
+        if (playerNumber == 1) {
             c1.position.x = 15 * 20
             dir *= -1
             isEnd = function (x) {
