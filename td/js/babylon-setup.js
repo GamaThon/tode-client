@@ -8,26 +8,11 @@ export class Setup {
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
         //Person 1
-        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(150, 10, 150), Baby.scene);
-        Baby.camera.setPosition(new BABYLON.Vector3(Math.PI, Math.PI / 4, 100));
+        // Vector: x, lower/raise camera, z --> Used for point of rotation for camera
+        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, 2 * Math.PI / 6, 250, new BABYLON.Vector3(160, -40, 160), Baby.scene);
         //Person 2
-        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 2 * Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(100, 10, 256), Baby.scene);
+        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 0, 2 * Math.PI / 6, 250, new BABYLON.Vector3(150, -40, 150), Baby.scene);
         Baby.camera.attachControl(Baby.canvas, true);
-
-        // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), Baby.scene);
-        // Baby.camera.setPosition(new BABYLON.Vector3(0, 0, 20));
-        // Baby.camera.attachControl(Baby.canvas, true);
-
-
-        //Fly
-        // Baby.camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(0, 5, -10), Baby.scene);
-        // Baby.camera.attachControl(Baby.canvas, true);
-
-
-        //Maybe
-        // Baby.camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, 20), Baby.scene);
-        // Baby.camera.setTarget(BABYLON.Vector3.Zero());
-        // Baby.camera.attachControl(Baby.canvas, true);
 
 
 
@@ -74,7 +59,6 @@ export class Setup {
         waterMesh.position.z += 192
 
 
-
         Baby.engine.runRenderLoop(function () {
             if (Baby.scene) {
                 Baby.scene.render();
@@ -88,6 +72,8 @@ export class Setup {
 
         Setup.createBaseTile()
         Setup.createMap()
+        Setup.createBaseCreep()
+        Setup.createTwoCreeps()
 
 
     }
@@ -160,4 +146,32 @@ export class Setup {
     }
 
 
+    static createBaseCreep() {
+
+        Baby.sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", Baby.scene);
+        Baby.sphereMaterial.diffuseTexture = new BABYLON.Texture("//www.babylonjs.com/assets/wood.jpg", Baby.scene);
+
+        Baby.sphereMesh = BABYLON.Mesh.CreateSphere("sphere", 20, 10, Baby.scene)
+        Baby.sphereMesh.position.y = 7
+        Baby.sphereMesh.material = Baby.sphereMaterial
+
+        Baby.sphereMesh.position.x = 20
+        Baby.sphereMesh.position.z = 20 * 8
+        Baby.sphereMesh.position.y = 8
+
+
+        Baby.sphereMesh.visibility = false
+
+    }
+
+    static createTwoCreeps() {
+        let c1 = Baby.sphereMesh.clone("c1")
+        c1.visibility = true
+
+        let c2 = Baby.sphereMesh.clone("c1")
+        c2.position.x = 15 * 20
+        c2.visibility = true
+
+
+    }
 }
