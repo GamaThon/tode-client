@@ -8,22 +8,22 @@ export class Setup {
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
 
-        
+
         //Model creation
         let assetsManager = new BABYLON.AssetsManager(Baby.scene);
         let meshTask = assetsManager.addMeshTask("meshtask1", "", "td/models/", "tower.babylon");
-        
+
         let mesh;
         let texture;
         let meshes;
-        
+
         meshTask.onSuccess = function (task) {
                 mesh = task.loadedMeshes[0];
                 meshes = task.loadedMeshes;
                 console.log("MESHLOADEDTASKBUG: " +task.loadedMeshes.length)
                 mesh.material = new BABYLON.StandardMaterial("tower1material", Baby.scene)
                 updateTexture();
-            }	
+            }
 
             let textureTask = assetsManager.addTextureTask("textureTask", "td/textures/tower1.jpg")
 
@@ -45,32 +45,32 @@ export class Setup {
             let matera1 = new BABYLON.StandardMaterial("Mat", Baby.scene);
             matera1.ambientTexture = new BABYLON.Texture("td/textures/tower1.jpg", Baby.scene);
 
-            
+
             function updateTexture() {
-                
+
                 try{
                     if (meshes && texture) {
-                    
-    
+
                     const scl = 0.06
                     const scalingFactor = new BABYLON.Vector3(scl, 0.04, scl)
-                    
+
+
                     for(const m of meshes) {
                         m.scaling = scalingFactor;
                         m.material = matera1;
                         m.material.emissiveColor = BABYLON.Color3.Red();
-                        m.material.diffuseColor = BABYLON.Color3.Yellow();        
+                        m.material.diffuseColor = BABYLON.Color3.Yellow();
                     }
-                    console.log("11:  " + scl + mesh.scaling)    
+                    console.log("11:  " + scl + mesh.scaling)
                 }
                 }
                 catch (err) {
                     console.log("error updateText: "+err.message);
                 }
-            
-                
+
+
             }
-            
+
             assetsManager.load();
         //End Model creation
 
@@ -274,6 +274,16 @@ export class Setup {
 
     }
 
+    static createCreep(id, playerNum) {
+        let c = Baby.sphereMesh.clone("c" + id)
+        c.visibility = true
+        if (playerNum === 1) {
+            c.position.x = 15 * 20
+        }
+
+
+    }
+
     static createTwoCreeps() {
         Baby.c1 = Baby.sphereMesh.clone("c1")
         Baby.c1.visibility = true
@@ -359,5 +369,11 @@ export class Setup {
 
     }
 
+    static makeChildrenOf(arr) {
+        let p = arr[0]
+        for (let i = 1 ; i < arr.length; i++) {
+            p.addChild(arr[i])
+        }
+    }
 
 }
