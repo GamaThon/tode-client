@@ -9,18 +9,16 @@ export class Setup {
         Baby.scene = new BABYLON.Scene(Baby.engine);
 
         
-        //Model creation
+        //Model creation - https://doc.babylonjs.com/how_to/how_to_use_assetsmanager
         let assetsManager = new BABYLON.AssetsManager(Baby.scene);
         let meshTask = assetsManager.addMeshTask("meshtask1", "", "td/models/", "tower.babylon");
         
-        let mesh;
         let texture;
         let meshes;
         
         meshTask.onSuccess = function (task) {
-                mesh = task.loadedMeshes[0];
                 meshes = task.loadedMeshes;
-                console.log("MESHLOADEDTASKBUG: " +task.loadedMeshes.length)
+                console.log("MESHLOADEDTASK LENGTH: " +task.loadedMeshes.length)
                 mesh.material = new BABYLON.StandardMaterial("tower1material", Baby.scene)
                 updateTexture();
             }	
@@ -28,27 +26,15 @@ export class Setup {
             let textureTask = assetsManager.addTextureTask("textureTask", "td/textures/tower1.jpg")
 
         textureTask.onSuccess = function (task) {
-                console.log("Success")
                 texture = task.texture;
                 updateTexture();
             }
-//Getridofeventually
-            textureTask.onError = function (task, message, exception) {
-                console.log("TextTaskError"+message, exception);
-            }
-
-            meshTask.onError = function (task, message, exception) {
-                console.log("BUGMEUP"+message, exception);
-            }
-//
 
             let matera1 = new BABYLON.StandardMaterial("Mat", Baby.scene);
             matera1.ambientTexture = new BABYLON.Texture("td/textures/tower1.jpg", Baby.scene);
 
-            
             function updateTexture() {
                 
-                try{
                     if (meshes && texture) {
                     
     
@@ -60,19 +46,14 @@ export class Setup {
                         m.material = matera1;
                         m.material.emissiveColor = BABYLON.Color3.Red();
                         m.material.diffuseColor = BABYLON.Color3.Yellow();        
-                    }
-                    console.log("11:  " + scl + mesh.scaling)    
-                }
-                }
-                catch (err) {
-                    console.log("error updateText: "+err.message);
+                    }    
                 }
             
                 
             }
             
             assetsManager.load();
-        //End Model creation
+        //End Model creation / AssetManager role
 
         //Person 1
         // Radians explained: https://en.wikipedia.org/wiki/Unit_circle#/media/File:Unit_circle_angles_color.svg
