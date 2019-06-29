@@ -35,6 +35,15 @@ export class WS {
         }
     }
 
+    static sendkey(x) {
+        if (x.key == 1) {
+            WS.send(JSON.stringify({
+                conversation: "P_KEY",
+                key: "1",
+            }))
+        }
+    }
+
     static handler(x) {
         Router.handle(x)
     }

@@ -83,6 +83,9 @@ export class Router {
             });
 
 
+            window.addEventListener("keypress", WS.sendkey, false);
+
+
         }, 1000)
     }
 
