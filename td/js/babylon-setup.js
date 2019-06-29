@@ -1,4 +1,5 @@
 import {Baby} from './baby.js'
+import {MapManager} from "./buildmap.js";
 
 export class Setup {
 
@@ -32,6 +33,8 @@ export class Setup {
         const ground = BABYLON.Mesh.CreateGround("ground", 512, 512, 20, Baby.scene, false);
         ground.position.y = -1;
         ground.material = groundMaterial;
+        ground.position.x += 192
+        ground.position.z += 192
 
         // Water
         const waterMesh = BABYLON.Mesh.CreateGround("waterMesh", 512, 512, 32, Baby.scene, false);
@@ -46,6 +49,9 @@ export class Setup {
         water.addToRenderList(skybox);
         water.addToRenderList(ground);
         waterMesh.material = water;
+        waterMesh.position.x += 192
+        waterMesh.position.z += 192
+
 
 
         Baby.engine.runRenderLoop(function () {
@@ -60,6 +66,7 @@ export class Setup {
         });
 
         Setup.createBaseTile()
+        Setup.createMap()
 
 
     }
@@ -71,6 +78,29 @@ export class Setup {
         const myMaterial = new BABYLON.StandardMaterial("myMaterial", Baby.scene);
         myMaterial.diffuseTexture = new BABYLON.Texture("td/textures/tile1.jpg", Baby.scene);
         Baby.baseTile.material = myMaterial;
+        Baby.baseTile.visibility = false
+
+    }
+
+    static createMap() {
+        let pX = 0;
+        let pZ = 0;
+        for (const rows of MapManager.getMap().puzzleMaze) {
+            pZ++
+            for (const row of rows) {
+                pX++
+
+                if (row === 0) {
+                    continue
+                }
+
+                let newTile = Baby.baseTile.clone("newTile" + pX + "." + pZ)
+                newTile.position.x = pX * 20;
+                newTile.position.z = pZ * 20;
+                newTile.visibility = true
+            }
+            pX = 0
+        }
 
 
     }

@@ -1,4 +1,10 @@
-const x = {
+export class MapManager {
+    static getMap() {
+        return map
+    }
+}
+
+const map = {
     puzzleMaze: [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
