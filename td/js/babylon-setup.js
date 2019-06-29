@@ -8,7 +8,7 @@ export class Setup {
         Baby.engine = new BABYLON.Engine(Baby.canvas, true, {preserveDrawingBuffer: true, stencil: true});
         Baby.scene = new BABYLON.Scene(Baby.engine);
         //Person 1
-        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(256, 10, 256), Baby.scene);
+        Baby.camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(150, 10, 150), Baby.scene);
         Baby.camera.setPosition(new BABYLON.Vector3(Math.PI, Math.PI / 4, 100));
         //Person 2
         // Baby.camera = new BABYLON.ArcRotateCamera("Camera", 2 * Math.PI, Math.PI / 4, 100, new BABYLON.Vector3(100, 10, 256), Baby.scene);
