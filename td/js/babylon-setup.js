@@ -140,16 +140,15 @@ export class Setup {
 
     static createPath2() {
 
-        let _vec3;
+        let _vec3 = [];
 
-        _vec3[0] = 0,0,7;
-        _vec3[1] = 2,0,4;
-        _vec3[2] = 7,0,7;
-        _vec3[3] = 12,0,10;
-        _vec3[4] = 14,0,7;
+        _vec3.push(new BABYLON.Vector3(1*20,0,7*20));
+        _vec3.push(new BABYLON.Vector3(3*20,0,4*20));
+        _vec3.push(new BABYLON.Vector3(7*20,0,7*20));
+        _vec3.push(new BABYLON.Vector3(12*20,0,10*20));
+        _vec3.push(new BABYLON.Vector3(14*20,0,7*20));
 
-        let pathLane1 = new BABYLON.Path3D(0,_vec3,false);
-        return pathLane1;
+        return _vec3;
     }
 
 
