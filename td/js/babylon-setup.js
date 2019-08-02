@@ -161,7 +161,7 @@ export class Setup {
             for (const row of rows) {
                 pX++
 
-                if (row === 0) {
+                if (row === 0 || row === 5) {
                     continue
                 }
 
@@ -181,9 +181,6 @@ export class Setup {
                     newTile.material = Baby.treeMaterial
                 }
 
-                if (row === 5) {
-                    newTile.material = Baby.waterMaterial
-                }
 
                 newTile.visibility = true
             }
